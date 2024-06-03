@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+    <!-- Main container -->
+    <div class="container-fluid">
+      <!-- Top banner section -->
+        <div class="top-banner d-flex justify-content-center align-items-center flex-column">
+            <h1 class="text-center mb-4">Welcome to our My awesome cart. Your one stop shop for a variety of products</h1>
+            <p>You will get the best quality products handpicked by our experts</p>
+        </div><!--End top banner section-->
+        
+        <!-- Products container for diplaying the products in a grid like structure -->
+        <div class="products-container">
+            <h2 class="text-center m-4">Here a list of our products</h2>
+            <div class="container overflow-hidden">
+                <div class="row gy-5">
+                 {% for product in products %} 
+                      {% if forloop.counter0|divisibleby:2 and not forloop.first %}
+                        </div><div class="row">
+                      {% endif %}
+                  <div class="col-md-6">
+                    <div class="card mb-4" style="width: 18rem;">
+                        <img src="{{ product.product_image.url}}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title">{{ product.product_name }}</h5>
+                          <p class="card-text">{{ product.product_description }}</p>
+                          <a href="#" class="btn btn-primary">Add to cart</a>
+                        </div>
+                      </div>
+                  </div>
+                  {% endfor %}
+                </div>
+              </div>
+                  
+                </div> <!-- End products-container -->
+              </div> <!-- End container fluid-->
+{% endblock %}
